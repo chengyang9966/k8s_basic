@@ -1,0 +1,58 @@
+apiVersion: skaffold/v2beta5
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*.depl.yaml
+build:
+  local:
+    push: false
+  artifacts:
+    - image: chengyang96/react_posts
+      context: .
+      docker:
+        dockerfile: ./client/Dockerfile
+      sync:
+        manual:
+          - src: './client/src/**/*.js'
+            dest: .
+    - image: chengyang96/comment
+      context: .
+      docker:
+        dockerfile: ./comment/Dockerfile
+      sync:
+        manual:
+          - src: './comment/*.js'
+            dest: .
+    - image: chengyang96/event_bus
+      context: .
+      docker:
+        dockerfile: ./event_bus/Dockerfile
+      sync:
+        manual:
+          - src: './event_bus/*.js'
+            dest: .
+    - image: chengyang96/moderation
+      context: .
+      docker:
+        dockerfile: ./moderation/Dockerfile
+      sync:
+        manual:
+          - src: './moderation/*.js'
+            dest: .
+    - image: chengyang96/posts
+      context: .
+      docker:
+        dockerfile: ./posts/Dockerfile
+      sync:
+        manual:
+          - src: '/posts/*.js'
+            dest: .
+    - image: chengyang96/query
+      context: .
+      docker:
+        dockerfile: ./query/Dockerfile
+      sync:
+        manual:
+          - src: './query/*.js'
+            dest: .

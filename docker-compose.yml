@@ -1,0 +1,32 @@
+version: "3.3"
+services:
+  posts:
+    container_name: posts
+    image: chengyang96/posts
+    build:
+      dockerfile: ./posts/Dockerfile
+  comment:
+    container_name: comment
+    image: chengyang96/comment
+    build:
+      dockerfile: ./comment/Dockerfile
+  event_bus:
+    container_name: event_bus
+    image: chengyang96/event_bus
+    build:
+      dockerfile: ./event_bus/Dockerfile
+  moderation:
+    container_name: moderation
+    image: chengyang96/moderation
+    build:
+      dockerfile: ./moderation/Dockerfile
+  query:
+    container_name: query
+    image: chengyang96/query
+    build:
+      dockerfile: ./query/Dockerfile
+  react_posts:
+    container_name: react_posts
+    image: chengyang96/react_posts
+    build:
+      dockerfile: ./client/Dockerfile

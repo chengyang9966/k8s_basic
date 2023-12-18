@@ -1,0 +1,22 @@
+GET {{post_domain}}/posts HTTP/1.1
+
+###
+POST {{post_domain}}/posts HTTP/1.1
+content-type: application/json
+
+{
+    "title": "testing"
+}
+
+### 
+// Comments 
+GET {{comments_domain}}/posts/{{postId}}/comments HTTP/1.1
+
+###
+POST {{comments_domain}}/posts/{{postId}}/comments HTTP/1.1
+content-type: application/json
+
+{
+    "comment": "testing"
+}
+
